@@ -29,7 +29,9 @@ public class SkateboardController : MonoBehaviour
     [SerializeField]
     private GameObject trailPrefab;
     [SerializeField]
-    private float generateCD;
+    private float trailGenerateCD = 1;
+    private bool canGenerateTrail = true;
+    private float trailTimer = 0;
 
     
     private float currentAcceleration = 0f;
@@ -78,16 +80,30 @@ public class SkateboardController : MonoBehaviour
         leftFront.steerAngle = currentTurnAngle;
         rightFront.steerAngle = currentTurnAngle;
 
-        if(currentAcceleration >= 0.1f)
+        if(currentAcceleration >= 0.1f || currentTurnAngle >= 0.1f ||
+           currentAcceleration <= -0.1f || currentTurnAngle <= -0.1f)
         {
-            GenerateTrails();
+            if(canGenerateTrail)
+            {
+                GenerateTrails();
+            }
         }
 
+        trailTimer += 0.1f;
+        if(trailTimer > trailGenerateCD)
+        {
+            canGenerateTrail = true;
+            trailTimer = 0;
+        }
     }
 
     private void GenerateTrails()
     {
-        GameObject trail = Instantiate(trailPrefab, tail.transform);
+        if(trailPrefab == null) { return; }
+        Vector3 trailPosition = tail.transform.position;
+        trailPosition.y = -0.001f;
+        GameObject trail = Instantiate(trailPrefab, trailPosition, Quaternion.identity);
         trail.transform.SetParent(null);
+        canGenerateTrail = false;
     }
 }
