@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SkateboardController : MonoBehaviour
 {
+    [Header("Wheels")]
     [SerializeField]
     private WheelCollider leftFront;
     [SerializeField]
@@ -14,12 +15,22 @@ public class SkateboardController : MonoBehaviour
     [SerializeField]
     private WheelCollider rightBack;
     
+    [Header("Movement")]
     [SerializeField]
     private float acceleration;
     [SerializeField]
     private float breakingForce;
     [SerializeField]
     private float maxTurnAngle;
+
+    [Header("Trail")]
+    [SerializeField]
+    private GameObject tail;
+    [SerializeField]
+    private GameObject trailPrefab;
+    [SerializeField]
+    private float generateCD;
+
     
     private float currentAcceleration = 0f;
     private float currentBreakingForce = 0f;
@@ -67,5 +78,16 @@ public class SkateboardController : MonoBehaviour
         leftFront.steerAngle = currentTurnAngle;
         rightFront.steerAngle = currentTurnAngle;
 
+        if(currentAcceleration >= 0.1f)
+        {
+            GenerateTrails();
+        }
+
+    }
+
+    private void GenerateTrails()
+    {
+        GameObject trail = Instantiate(trailPrefab, tail.transform);
+        trail.transform.SetParent(null);
     }
 }
