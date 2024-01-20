@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using GridSystem;
 using UnityEngine;
 
 public class SkateboardController : MonoBehaviour
@@ -33,21 +34,46 @@ public class SkateboardController : MonoBehaviour
     private bool canGenerateTrail = true;
     private float trailTimer = 0;
 
+    [Header("Paint")]
+    [SerializeField]
+    private Color testColor1;
+    [SerializeField]
+    private Color testColor2;
+    [SerializeField]
+    private Color testColor3;
+    [SerializeField]
+    private GridGenerator gridGenerator;
+    private Color currentColor;
+
+
     
     private float currentAcceleration = 0f;
     private float currentBreakingForce = 0f;
     private float currentTurnAngle = 0f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentColor = testColor1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentColor = testColor1;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentColor = testColor2;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentColor = testColor3;
+        }
     }
 
     private void FixedUpdate() 
@@ -56,9 +82,14 @@ public class SkateboardController : MonoBehaviour
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
         
         //handle break
+        
         if(Input.GetKey(KeyCode.Space))
         {
             currentBreakingForce = breakingForce;
+            if(gridGenerator != null)
+            {
+                gridGenerator.UpdateGridColor(transform.position, currentColor);
+            }
         }
         else
         {
@@ -85,7 +116,7 @@ public class SkateboardController : MonoBehaviour
         {
             if(canGenerateTrail)
             {
-                GenerateTrails();
+                //GenerateTrails();
             }
         }
 
