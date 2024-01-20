@@ -57,6 +57,8 @@ namespace GridSystem
                     transform.localPosition = GetWorldPosition(x, y) + new Vector3(cellSize / 2, 0, cellSize / 2);
                     transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
                     transform.localScale = new Vector3(10, 10);
+
+                    gridArray[x, y] = 0;
                 }
             }
         }
@@ -118,6 +120,20 @@ namespace GridSystem
             gridSprite = null;
             gridArray = null;
             gridSprites = null;
+        }
+
+        public void SetColor(GridDefinition gridDefinition)
+        {
+            int count = 0;
+            for(int x = 0; x < gridArray.GetLength(0); x++)
+            {
+                for(int y = 0; y < gridArray.GetLength(1); y++)
+                {
+                    if(count >= gridDefinition.GridColorDatas.Count) { return; }
+                    gridSprites[x, y].color = gridDefinition.GridColorDatas[count].color;
+                    count++;
+                }
+            }
         }
     }
 }

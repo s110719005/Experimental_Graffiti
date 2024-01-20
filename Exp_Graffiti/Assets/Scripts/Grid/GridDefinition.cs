@@ -26,6 +26,7 @@ public class GridDefinition : ScriptableObject
 
     [SerializeField]
     private List<GridColorData> gridColorDatas;
+    public List<GridColorData> GridColorDatas => gridColorDatas;
 
     [System.Serializable]
     public class GridColorData

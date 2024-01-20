@@ -17,9 +17,13 @@ public class GridGeneratorEditor : Editor
 
         GridGenerator gridGenerator = target as GridGenerator;
 
-        if (GUILayout.Button("Add Grid in Scene"))
+        if (GUILayout.Button("Add empty grid into Scene"))
         {
             gridGenerator.DEBUG_GenerateGrid();
+        }           
+        if (GUILayout.Button("Add empty grid using grid SO"))
+        {
+            gridGenerator.DEBUG_GenerateGridTemplate();
         }           
         if (GUILayout.Button("Record grid color into SO"))
         {
@@ -46,6 +50,8 @@ public class GridGeneratorEditor : Editor
         {
             var gridDefinition = serializedObject.FindProperty("gridDefinition");
             EditorGUILayout.PropertyField(gridDefinition);
+            var DEBUG_hasGenerate = serializedObject.FindProperty("DEBUG_hasGenerate");
+            EditorGUILayout.PropertyField(DEBUG_hasGenerate);
         }
         GUILayout.EndVertical();
 

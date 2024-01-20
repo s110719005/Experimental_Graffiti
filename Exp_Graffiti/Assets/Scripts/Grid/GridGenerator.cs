@@ -13,6 +13,8 @@ namespace GridSystem
         private Grid grid;
         [SerializeField]
         private GridDefinition gridDefinition;
+
+        public bool DEBUG_hasGenerate = false;
         
         void Start()
         {
@@ -28,7 +30,17 @@ namespace GridSystem
 
         public void DEBUG_GenerateGrid()
         {
+            if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
             grid = new Grid(gridDefinition, gameObject);
+            DEBUG_hasGenerate = true;
+        }
+
+        public void DEBUG_GenerateGridTemplate()
+        {
+            if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
+            grid = new Grid(gridDefinition, gameObject);
+            grid.SetColor(gridDefinition);
+            DEBUG_hasGenerate = true;
         }
 
         public void DEBUG_RecordColor()
@@ -61,6 +73,7 @@ namespace GridSystem
             }
             grid.Reset();
             grid = null;
+            DEBUG_hasGenerate = false;
         }
     }
 
