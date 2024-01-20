@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 namespace GridSystem
 {
+    [System.Serializable]
     public class Grid
     {
         private int width;
@@ -13,7 +15,9 @@ namespace GridSystem
         private Sprite gridSprite;
         private GameObject parent;
         private int[,] gridArray;
+        public int[,] GridArray => gridArray;
         private SpriteRenderer[,] gridSprites;
+        public SpriteRenderer[,] GridSprites => gridSprites;
 
         public Grid(int width, int height, float cellSize, Sprite gridSprite, GameObject parent)
         {
@@ -99,10 +103,21 @@ namespace GridSystem
             SetSpriteColor(x, y, color);
         }
 
-        private void SetSpriteColor(int x, int y, Color color)
+        public void SetSpriteColor(int x, int y, Color color)
         {
             if(gridSprites[x, y].color == color) { return; }
             gridSprites[x, y].color = color;
+        }
+
+        public void Reset()
+        {
+            width = 0;
+            height = 0;
+            cellSize = 0;
+            parent = null;
+            gridSprite = null;
+            gridArray = null;
+            gridSprites = null;
         }
     }
 }

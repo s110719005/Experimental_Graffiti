@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +20,33 @@ public class GridDefinition : ScriptableObject
     private Sprite gridSprite;
     public Sprite GridSprite => gridSprite;
 
+    [SerializeField]
+    private Color[,] gridColor;
+    public Color[,] GridColor => gridColor;
 
+    [SerializeField]
+    private List<GridColorData> gridColorDatas;
+
+    [System.Serializable]
+    public class GridColorData
+    {
+        public int x;
+        public int y;
+        public Color color;
+    }
+    
+
+    public void SetGridSpritesColor(int x, int y, Color newColor)
+    {
+        GridColorData newData = new GridColorData();
+        newData.x = x;
+        newData.y = y;
+        newData.color = newColor;
+        gridColorDatas.Add(newData);
+    }
+
+    public void ResetColorData()
+    {
+        gridColorDatas.Clear();
+    }
 }
