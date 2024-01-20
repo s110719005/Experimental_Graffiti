@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWidth: 160
   gridHeight: 100
-  cellSize: 1
+  cellSize: 0.625
+  gridSprite: {fileID: 21300000, guid: 2b8a5ec6caa2b6e45b9ad15efed6a1a7, type: 3}

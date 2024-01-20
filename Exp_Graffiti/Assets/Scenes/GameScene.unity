@@ -132,27 +132,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 78750610}
-  - component: {fileID: 78750609}
+  - component: {fileID: 78750611}
   m_Layer: 0
-  m_Name: GridTest
+  m_Name: GridGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &78750609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78750608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56cedf9aaedc093409b1ce8565891283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skateBoard: {fileID: 1719433850}
 --- !u!4 &78750610
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +155,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78750611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78750608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c439ee5771b429489f785e58d702996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skateBoard: {fileID: 1719433850}
+  gridDefinition: {fileID: 11400000, guid: 3906b7b5e130aca409b66c6de129fc8a, type: 2}
 --- !u!1 &479855357
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +541,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor1.b
+      value: 0.7490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor1.g
+      value: 0.7490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor2.b
+      value: 0.80566037
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor2.g
+      value: 0.91822237
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor2.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor3.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor3.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor3.g
+      value: 0.92607504
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: testColor3.r
+      value: 0.75849056
+      objectReference: {fileID: 0}
+    - target: {fileID: -5659310880022453536, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
+      propertyPath: gridGenerator
+      value: 
+      objectReference: {fileID: 78750611}
     - target: {fileID: 4570104842123252912, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.7678
