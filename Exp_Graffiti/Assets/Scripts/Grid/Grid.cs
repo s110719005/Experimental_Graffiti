@@ -13,7 +13,6 @@ namespace GridSystem
         private Sprite gridSprite;
         private GameObject parent;
         private int[,] gridArray;
-        private TextMesh[,] debugTextArray;
         private SpriteRenderer[,] gridSprites;
 
         public Grid(int width, int height, float cellSize, Sprite gridSprite, GameObject parent)
@@ -56,44 +55,6 @@ namespace GridSystem
                     transform.localScale = new Vector3(10, 10);
                 }
             }
-            // debugTextArray = new TextMesh[width, height];
-            // for(int x = 0; x < gridArray.GetLength(0); x++)
-            // {
-            //     for(int y = 0; y < gridArray.GetLength(1); y++)
-            //     {
-            //         //Debug.Log(x + " " + y);
-            //         debugTextArray[x, y] = Utility.WorldText.CreateWorldText
-            //         (
-            //             gridArray[x,y].ToString(), 
-            //             parent.transform, 
-            //             Quaternion.Euler(new Vector3(90, 0, 0)), 
-            //             GetWorldPosition(x, y) + new Vector3(cellSize / 2, 0, cellSize / 2), 
-            //             20, 
-            //             Color.white, 
-            //             TextAnchor.MiddleCenter
-            //         );
-            //         if(parent)
-            //         {
-            //             Debug.DrawLine(GetWorldPosition(x, y) + parent.transform.position, GetWorldPosition(x, y + 1) + parent.transform.position, Color.white, 100f);
-            //             Debug.DrawLine(GetWorldPosition(x, y) + parent.transform.position, GetWorldPosition(x + 1, y) + parent.transform.position, Color.white, 100f);
-            //         }
-            //         else
-            //         {
-            //             Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
-            //             Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
-            //         }
-            //     }
-            // }
-            // if(parent)
-            // {
-            //     Debug.DrawLine(GetWorldPosition(0, height) + parent.transform.position, GetWorldPosition(width, height) + parent.transform.position, Color.white, 100f);
-            //     Debug.DrawLine(GetWorldPosition(width, 0) + parent.transform.position, GetWorldPosition(width, height) + parent.transform.position, Color.white, 100f);
-            // }
-            // else
-            // {
-            //     Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
-            //     Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
-            // }
         }
 
         private Vector3 GetWorldPosition(int x, int y)
@@ -115,25 +76,33 @@ namespace GridSystem
             }
         }
 
-        public void SetValue(int x, int y, int value)
-        {
-            if(x < 0 || x >= width) { return; }
-            if(y < 0 || y >= height) { return; }
-            gridArray[x, y] = value;
-            debugTextArray[x, y].text = value.ToString();
-        }
-
         public void SetValue(Vector3 worldPosition, int value)
         {
             int x, y;
             GetXY(worldPosition, out x, out y);
-            Debug.Log(x + ", " + y);
+            if(x < 0 || x >= width) { return; }
+            if(y < 0 || y >= height) { return; }
             SetValue(x, y, value);
         }
-
-        public void SetSpriteColor()
+        private void SetValue(int x, int y, int value)
         {
-            
+            gridArray[x, y] = value;
+        }
+
+        public void SetSpriteColor(Vector3 worldPosition, Color color)
+        {
+            int x, y;
+            GetXY(worldPosition, out x, out y);
+
+            if(x < 0 || x >= width) { return; }
+            if(y < 0 || y >= height) { return; }
+            SetSpriteColor(x, y, color);
+        }
+
+        private void SetSpriteColor(int x, int y, Color color)
+        {
+            if(gridSprites[x, y].color == color) { return; }
+            gridSprites[x, y].color = color;
         }
     }
 }

@@ -18,13 +18,10 @@ namespace GridSystem
             grid = new Grid(gridDefinition, gameObject);
         }
 
-        void Update()
+        
+        public void UpdateGridColor(Vector3 position, Color colorToChange)
         {
-            if(skateBoard.IsBreaking)
-            {
-                grid.SetValue(skateBoard.gameObject.transform.position, 3);
-                //Debug.Log("SET VALUE");
-            }
+            grid.SetSpriteColor(position, colorToChange);
         }
     }
 
