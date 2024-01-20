@@ -38,10 +38,6 @@ public class SkateboardController : MonoBehaviour
     [SerializeField]
     private Color testColor1;
     [SerializeField]
-    private Color testColor2;
-    [SerializeField]
-    private Color testColor3;
-    [SerializeField]
     private GridGenerator gridGenerator;
     private Color currentColor;
 
@@ -62,17 +58,9 @@ public class SkateboardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            currentColor = testColor1;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentColor = testColor2;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentColor = testColor3;
+            this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
         }
     }
 
@@ -111,21 +99,21 @@ public class SkateboardController : MonoBehaviour
         leftFront.steerAngle = currentTurnAngle;
         rightFront.steerAngle = currentTurnAngle;
 
-        if(currentAcceleration >= 0.1f || currentTurnAngle >= 0.1f ||
-           currentAcceleration <= -0.1f || currentTurnAngle <= -0.1f)
-        {
-            if(canGenerateTrail)
-            {
-                //GenerateTrails();
-            }
-        }
+        // if(currentAcceleration >= 0.1f || currentTurnAngle >= 0.1f ||
+        //    currentAcceleration <= -0.1f || currentTurnAngle <= -0.1f)
+        // {
+        //     if(canGenerateTrail)
+        //     {
+        //         //GenerateTrails();
+        //     }
+        // }
 
-        trailTimer += 0.1f;
-        if(trailTimer > trailGenerateCD)
-        {
-            canGenerateTrail = true;
-            trailTimer = 0;
-        }
+        // trailTimer += 0.1f;
+        // if(trailTimer > trailGenerateCD)
+        // {
+        //     canGenerateTrail = true;
+        //     trailTimer = 0;
+        // }
     }
 
     private void GenerateTrails()
@@ -136,5 +124,10 @@ public class SkateboardController : MonoBehaviour
         GameObject trail = Instantiate(trailPrefab, trailPosition, Quaternion.identity);
         trail.transform.SetParent(null);
         canGenerateTrail = false;
+    }
+
+    public void ChangeColor(Color colorToChange)
+    {
+        currentColor = colorToChange;
     }
 }
