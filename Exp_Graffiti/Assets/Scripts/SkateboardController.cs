@@ -38,6 +38,10 @@ public class SkateboardController : MonoBehaviour
     private float currentBreakingForce = 0f;
     private float currentTurnAngle = 0f;
 
+
+    private bool isBreaking = false;
+    public bool IsBreaking => isBreaking;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,10 +63,12 @@ public class SkateboardController : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             currentBreakingForce = breakingForce;
+            isBreaking = true;
         }
         else
         {
             currentBreakingForce = 0;
+            isBreaking = false;
         }
 
         //acceleration to front wheels
@@ -85,7 +91,7 @@ public class SkateboardController : MonoBehaviour
         {
             if(canGenerateTrail)
             {
-                GenerateTrails();
+                //GenerateTrails();
             }
         }
 
