@@ -13,6 +13,8 @@ namespace GridSystem
         private Grid grid;
         [SerializeField]
         private GridDefinition gridDefinition;
+        [SerializeField]
+        private Color currentColor = Color.white;
 
         public bool DEBUG_hasGenerate = false;
         public bool DEBUG_canMouseInput = false;
@@ -20,7 +22,10 @@ namespace GridSystem
         void Start()
         {
             //grid = new Grid(20, 10, 10f, gameObject);
-            grid = new Grid(gridDefinition, gameObject);
+            if(!DEBUG_canMouseInput)
+            {
+                grid = new Grid(gridDefinition, gameObject);
+            }
         }
 
         void Update()
@@ -37,11 +42,16 @@ namespace GridSystem
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        UpdateGridColor(hit.point, Color.black);
+                        UpdateGridColor(hit.point, currentColor);
                     }
                     //Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
                 }
             }
+        }
+
+        public void ChangeColor(Color newColor)
+        {
+            currentColor = newColor;
         }
 
         
