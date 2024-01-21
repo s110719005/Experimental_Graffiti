@@ -21,6 +21,9 @@ namespace GridSystem
         [SerializeField]
         private Sprite gridSprite;
         public Sprite GridSprite => gridSprite;
+        [SerializeField]
+        private Sprite templateSprite;
+        public Sprite TemplateSprite => templateSprite;
 
         [SerializeField]
         private List<Color> usedColors;

@@ -56,6 +56,7 @@ namespace GridSystem
                     GameObject gameObject = new GameObject("gridObject", typeof(SpriteRenderer));
                     gridSprites[x, y] = gameObject.GetComponent<SpriteRenderer>();
                     gridSprites[x, y].sprite = gridSprite;
+                    gridSprites[x, y].color = Color.grey;
                     Transform transform = gameObject.transform;
                     transform.SetParent(parent.transform, false);
                     transform.localPosition = GetWorldPosition(x, y) + new Vector3(cellSize / 2, 0, cellSize / 2);
