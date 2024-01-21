@@ -23,6 +23,10 @@ namespace GridSystem
         public Sprite GridSprite => gridSprite;
 
         [SerializeField]
+        private List<Color> usedColors;
+        public List<Color> UsedColors => usedColors;
+
+        [SerializeField]
         private List<GridColorData> gridColorDatas;
         public List<GridColorData> GridColorDatas => gridColorDatas;
 
@@ -46,18 +50,10 @@ namespace GridSystem
 
         public void ResetColorData()
         {
+            usedColors.Clear();
             gridColorDatas.Clear();
         }
 
-        // public void Duplicate(GridDefinition definitionToDuplicate)
-        // {
-        //     gridWidth = definitionToDuplicate.GridWidth;
-        //     gridHeight = definitionToDuplicate.GridHeight;
-        //     cellSize = definitionToDuplicate.CellSize;
-        //     gridSprite = definitionToDuplicate.GridSprite;
-        //     gridColorDatas = definitionToDuplicate.GridColorDatas;
-
-        // }
         public void Duplicate(Grid gridToDuplicate)
         {
             if(gridToDuplicate == null) { return; }
@@ -65,15 +61,26 @@ namespace GridSystem
             gridHeight = gridToDuplicate.Height;
             cellSize = gridToDuplicate.CellSize;
             gridSprite = gridToDuplicate.GridSprite;
+            usedColors = new List<Color>();
             gridColorDatas = new List<GridColorData>();
             for(int x = 0; x < gridToDuplicate.GridArray.GetLength(0); x++)
             {
                 for(int y = 0; y < gridToDuplicate.GridArray.GetLength(1); y++)
                 {
-                    SetGridSpritesColor(x, y, gridToDuplicate.GridSprites[x, y].color);
+                    var duplicateColor = gridToDuplicate.GridSprites[x, y].color;
+                    if(!usedColors.Contains(duplicateColor))
+                    {
+                        usedColors.Add(duplicateColor);
+                    }
+                    SetGridSpritesColor(x, y, duplicateColor);
                 }
             }
 
+        }
+
+        internal void AddUsedColor(Color usedColor)
+        {
+            usedColors.Add(usedColor);
         }
     }
 }

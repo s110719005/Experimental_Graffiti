@@ -57,6 +57,8 @@ public class GridGeneratorEditor : Editor
             EditorGUILayout.PropertyField(currentColor);
             var gridDefinition = serializedObject.FindProperty("gridDefinition");
             EditorGUILayout.PropertyField(gridDefinition);
+            var accuracyText = serializedObject.FindProperty("accuracyText");
+            EditorGUILayout.PropertyField(accuracyText);
             var DEBUG_hasGenerate = serializedObject.FindProperty("DEBUG_hasGenerate");
             EditorGUILayout.PropertyField(DEBUG_hasGenerate);
             var DEBUG_canMouseInput = serializedObject.FindProperty("DEBUG_canMouseInput");

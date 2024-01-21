@@ -109,9 +109,9 @@ public class SkateboardController : MonoBehaviour
         // }
     }
 
-    public void ChangeColor(Color colorToChange, Material materialToChange)
+    public void ChangeColor(Color colorToChange)
     {
         currentColor = colorToChange;
-        skateboardMesh.material = materialToChange;
+        skateboardMesh.material.SetColor("_Color", colorToChange);
     }
 }
