@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using GridSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameCore : MonoBehaviour
 {
+    public static GameCore Instance;
     [SerializeField]
     private GridGenerator gridGenerator;
     [SerializeField]
@@ -12,6 +14,18 @@ public class GameCore : MonoBehaviour
     [SerializeField]
     private Transform colorChangerStartPoint;
     // Start is called before the first frame update
+    
+    private void Awake() 
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     void Start()
     {
         gridGenerator.GenerateGrid();
@@ -33,5 +47,10 @@ public class GameCore : MonoBehaviour
     {
         //Calculate accuracy
         //Go to end scene when time end
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
