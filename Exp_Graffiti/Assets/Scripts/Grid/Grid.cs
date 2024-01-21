@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,15 +6,22 @@ using UnityEngine;
 
 namespace GridSystem
 {
+    [System.Serializable]
     public class Grid
     {
         private int width;
+        public int Width => width;
         private int height;
+        public int Height => height;
         private float cellSize;
+        public float CellSize => cellSize;
         private Sprite gridSprite;
+        public Sprite GridSprite => gridSprite;
         private GameObject parent;
         private int[,] gridArray;
+        public int[,] GridArray => gridArray;
         private SpriteRenderer[,] gridSprites;
+        public SpriteRenderer[,] GridSprites => gridSprites;
 
         public Grid(int width, int height, float cellSize, Sprite gridSprite, GameObject parent)
         {
@@ -53,6 +61,8 @@ namespace GridSystem
                     transform.localPosition = GetWorldPosition(x, y) + new Vector3(cellSize / 2, 0, cellSize / 2);
                     transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
                     transform.localScale = new Vector3(10, 10);
+
+                    gridArray[x, y] = 0;
                 }
             }
         }
@@ -99,10 +109,35 @@ namespace GridSystem
             SetSpriteColor(x, y, color);
         }
 
-        private void SetSpriteColor(int x, int y, Color color)
+        public void SetSpriteColor(int x, int y, Color color)
         {
             if(gridSprites[x, y].color == color) { return; }
             gridSprites[x, y].color = color;
+        }
+
+        public void Reset()
+        {
+            width = 0;
+            height = 0;
+            cellSize = 0;
+            parent = null;
+            gridSprite = null;
+            gridArray = null;
+            gridSprites = null;
+        }
+
+        public void SetColor(GridDefinition gridDefinition)
+        {
+            int count = 0;
+            for(int x = 0; x < gridArray.GetLength(0); x++)
+            {
+                for(int y = 0; y < gridArray.GetLength(1); y++)
+                {
+                    if(count >= gridDefinition.GridColorDatas.Count) { return; }
+                    gridSprites[x, y].color = gridDefinition.GridColorDatas[count].color;
+                    count++;
+                }
+            }
         }
     }
 }
