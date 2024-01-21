@@ -972,11 +972,9 @@ MonoBehaviour:
   acceleration: 500
   breakingForce: 300
   maxTurnAngle: 15
-  tail: {fileID: 6242868496667209256}
-  trailPrefab: {fileID: 1567466115491469077, guid: b4df13119059c3d4bb98ff5b4b5ac503, type: 3}
-  trailGenerateCD: 1
   testColor1: {r: 1, g: 0.7490566, b: 0.7490566, a: 1}
   gridGenerator: {fileID: 0}
+  skateboardMesh: {fileID: 6435088234194760762}
 --- !u!54 &9204097279804777716
 Rigidbody:
   m_ObjectHideFlags: 0
