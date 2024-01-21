@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c439ee5771b429489f785e58d702996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDefinition: {fileID: 0}
+  gridDefinitions:
+  - {fileID: 11400000, guid: 7e9ca608d6e994345affe6769bb830c7, type: 2}
+  - {fileID: 11400000, guid: 81cc79097bc25fe4eaa9c76165dd60c0, type: 2}
+  - {fileID: 11400000, guid: 35164ee140e97e245820ef0ff031e105, type: 2}
+  currentColor: {r: 1, g: 1, b: 1, a: 1}
+  accuracyText: {fileID: 0}
+  templateImage: {fileID: 0}
   DEBUG_hasGenerate: 0
   DEBUG_canMouseInput: 0
