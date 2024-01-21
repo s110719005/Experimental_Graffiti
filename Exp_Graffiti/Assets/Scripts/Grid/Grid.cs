@@ -10,9 +10,13 @@ namespace GridSystem
     public class Grid
     {
         private int width;
+        public int Width => width;
         private int height;
+        public int Height => height;
         private float cellSize;
+        public float CellSize => cellSize;
         private Sprite gridSprite;
+        public Sprite GridSprite => gridSprite;
         private GameObject parent;
         private int[,] gridArray;
         public int[,] GridArray => gridArray;

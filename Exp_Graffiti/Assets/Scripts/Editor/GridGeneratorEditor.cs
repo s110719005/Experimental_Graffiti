@@ -33,7 +33,12 @@ public class GridGeneratorEditor : Editor
         if (GUILayout.Button("Reset Grid"))
         {
             gridGenerator.DEBUG_ResetGrid();
-        }           
+        }
+        GUILayout.Space(10);     
+        if (GUILayout.Button("Create new grid Asses"))
+        {
+            gridGenerator.DEBUG_CreateGridAsset();
+        }      
 
         serializedObject.ApplyModifiedProperties();
 
@@ -52,6 +57,8 @@ public class GridGeneratorEditor : Editor
             EditorGUILayout.PropertyField(gridDefinition);
             var DEBUG_hasGenerate = serializedObject.FindProperty("DEBUG_hasGenerate");
             EditorGUILayout.PropertyField(DEBUG_hasGenerate);
+            var DEBUG_canMouseInput = serializedObject.FindProperty("DEBUG_canMouseInput");
+            EditorGUILayout.PropertyField(DEBUG_canMouseInput);
         }
         GUILayout.EndVertical();
 

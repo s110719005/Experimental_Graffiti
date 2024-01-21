@@ -15,11 +15,33 @@ namespace GridSystem
         private GridDefinition gridDefinition;
 
         public bool DEBUG_hasGenerate = false;
+        public bool DEBUG_canMouseInput = false;
         
         void Start()
         {
             //grid = new Grid(20, 10, 10f, gameObject);
             grid = new Grid(gridDefinition, gameObject);
+        }
+
+        void Update()
+        {
+            CheckMouseInput();
+        }
+
+        private void CheckMouseInput()
+        {
+            if(DEBUG_canMouseInput)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        UpdateGridColor(hit.point, Color.black);
+                    }
+                    //Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+                }
+            }
         }
 
         
@@ -74,6 +96,15 @@ namespace GridSystem
             grid.Reset();
             grid = null;
             DEBUG_hasGenerate = false;
+        }
+
+        public void DEBUG_CreateGridAsset()
+        {
+            GridDefinition newGrid = ScriptableObject.CreateInstance<GridDefinition>();
+            newGrid.name = "gridTemplate";
+            newGrid.Duplicate(grid);
+            var uniqueFileName = AssetDatabase.GenerateUniqueAssetPath("Assets/ScriptableObject/GridTemplate.asset");
+            AssetDatabase.CreateAsset(newGrid, uniqueFileName);
         }
     }
 
