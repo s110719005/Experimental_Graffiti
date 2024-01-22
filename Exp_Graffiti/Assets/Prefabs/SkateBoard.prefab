@@ -815,7 +815,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -969,9 +969,9 @@ MonoBehaviour:
   rightFront: {fileID: 8827352825232517693}
   leftBack: {fileID: 8695588029327602231}
   rightBack: {fileID: 6940997408353670125}
-  acceleration: 500
-  breakingForce: 300
-  maxTurnAngle: 15
+  acceleration: 300
+  breakingForce: 100
+  maxTurnAngle: 30
   testColor1: {r: 1, g: 0.7490566, b: 0.7490566, a: 1}
   gridGenerator: {fileID: 0}
   skateboardMesh: {fileID: 6435088234194760762}
