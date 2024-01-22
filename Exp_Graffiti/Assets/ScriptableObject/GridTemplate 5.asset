@@ -16,7 +16,7 @@ MonoBehaviour:
   gridHeight: 25
   cellSize: 2.4
   gridSprite: {fileID: 21300000, guid: 2b8a5ec6caa2b6e45b9ad15efed6a1a7, type: 3}
-  templateSprite: {fileID: 0}
+  templateSprite: {fileID: 21300000, guid: 9a329bbe058751c418729117dee9e7cd, type: 3}
   usedColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
