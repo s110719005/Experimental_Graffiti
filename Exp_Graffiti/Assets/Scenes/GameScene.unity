@@ -2019,10 +2019,6 @@ PrefabInstance:
       propertyPath: gridGenerator
       value: 
       objectReference: {fileID: 1796131721}
-    - target: {fileID: 325046937821229137, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
-      propertyPath: m_Depth
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4570104842123252912, guid: 8daf69292effd22498e5ec70f482bb82, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55.3
