@@ -22,6 +22,8 @@ namespace GridSystem
         public int[,] GridArray => gridArray;
         private SpriteRenderer[,] gridSprites;
         public SpriteRenderer[,] GridSprites => gridSprites;
+        private bool[,] value;
+        public bool[,] Value => value;
 
         public Grid(int width, int height, float cellSize, Sprite gridSprite, GameObject parent)
         {
@@ -49,6 +51,7 @@ namespace GridSystem
         {
             gridArray = new int[width, height];
             gridSprites = new SpriteRenderer[width, height];
+            value = new bool[width, height];
             for(int x = 0; x < gridArray.GetLength(0); x++)
             {
                 for(int y = 0; y < gridArray.GetLength(1); y++)
@@ -64,6 +67,7 @@ namespace GridSystem
                     transform.localScale = new Vector3(10, 10);
 
                     gridArray[x, y] = 0;
+                    value[x, y] = false;
                 }
             }
         }
@@ -118,6 +122,11 @@ namespace GridSystem
             gridSprites[x, y].color = color;
             return true;
             
+        }
+
+        public void SetCorrect(int x, int y, bool isCorrect)
+        {
+            value[x ,y] = isCorrect;
         }
 
         public void Reset()

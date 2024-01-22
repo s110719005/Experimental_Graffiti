@@ -63,6 +63,7 @@ namespace GridSystem
                     if(grid.GridSprites[x, y].color == currentGridDefinition.GridColorDatas[count].color)
                     {
                         correctCell ++;
+                        grid.SetCorrect(x, y, true);
                     }
                 }
             }
@@ -113,13 +114,18 @@ namespace GridSystem
         private void UpdateAccuracy(int x, int y)
         {
             int count = x * (currentGridDefinition.GridHeight - 1) + y;
-            if(grid.GridSprites[x, y].color == currentGridDefinition.GridColorDatas[count].color)
+            //bad :(
+            if(grid.GridSprites[x, y].color == currentGridDefinition.GridColorDatas[count].color &&
+               grid.Value[x, y] == false)
             {
                 correctCell++;
+                grid.SetCorrect(x, y, true);
             }
-            else
+            else if(grid.GridSprites[x, y].color != currentGridDefinition.GridColorDatas[count].color &&
+                    grid.Value[x, y] == true)
             {
                 correctCell--;
+                grid.SetCorrect(x, y, false);
             }
             UpdateAccuracyText();
         }
