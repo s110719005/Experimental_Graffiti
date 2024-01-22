@@ -56,6 +56,7 @@ namespace GridSystem
                     GameObject gameObject = new GameObject("gridObject", typeof(SpriteRenderer));
                     gridSprites[x, y] = gameObject.GetComponent<SpriteRenderer>();
                     gridSprites[x, y].sprite = gridSprite;
+                    gridSprites[x, y].color = Color.grey;
                     Transform transform = gameObject.transform;
                     transform.SetParent(parent.transform, false);
                     transform.localPosition = GetWorldPosition(x, y) + new Vector3(cellSize / 2, 0, cellSize / 2);
@@ -99,20 +100,24 @@ namespace GridSystem
             gridArray[x, y] = value;
         }
 
-        public void SetSpriteColor(Vector3 worldPosition, Color color)
+        public bool SetSpriteColor(Vector3 worldPosition, Color color, out int positionX, out int positionY)
         {
             int x, y;
             GetXY(worldPosition, out x, out y);
+            positionX = x;
+            positionY = y;
 
-            if(x < 0 || x >= width) { return; }
-            if(y < 0 || y >= height) { return; }
-            SetSpriteColor(x, y, color);
+            if(x < 0 || x >= width) { return false; }
+            if(y < 0 || y >= height) { return false; }
+            return SetSpriteColor(x, y, color);
         }
 
-        public void SetSpriteColor(int x, int y, Color color)
+        public bool SetSpriteColor(int x, int y, Color color)
         {
-            if(gridSprites[x, y].color == color) { return; }
+            if(gridSprites[x, y].color == color) { return false; }
             gridSprites[x, y].color = color;
+            return true;
+            
         }
 
         public void Reset()

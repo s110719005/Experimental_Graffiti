@@ -3565,13 +3565,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
-      propertyPath: gridDefinition
-      value: 
-      objectReference: {fileID: 11400000, guid: 3906b7b5e130aca409b66c6de129fc8a, type: 2}
+      propertyPath: DEBUG_hasGenerate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
       propertyPath: DEBUG_canMouseInput
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
+      propertyPath: gridDefinitions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 81cc79097bc25fe4eaa9c76165dd60c0, type: 2}
+    - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
+      propertyPath: gridDefinitions.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e9ca608d6e994345affe6769bb830c7, type: 2}
     - target: {fileID: 7139820671042628657, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
       propertyPath: m_Name
       value: GridGenerator

@@ -45,6 +45,10 @@ public class GridDefinitionEditor : Editor
             EditorGUILayout.PropertyField(cellSize);
             var gridSprite = serializedObject.FindProperty("gridSprite");
             EditorGUILayout.PropertyField(gridSprite);
+            var templateSprite = serializedObject.FindProperty("templateSprite");
+            EditorGUILayout.PropertyField(templateSprite);
+            var usedColors = serializedObject.FindProperty("usedColors");
+            EditorGUILayout.PropertyField(usedColors);
             var gridColorDatas = serializedObject.FindProperty("gridColorDatas");
             EditorGUILayout.PropertyField(gridColorDatas);
         }

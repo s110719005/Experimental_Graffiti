@@ -24,15 +24,6 @@ public class SkateboardController : MonoBehaviour
     [SerializeField]
     private float maxTurnAngle;
 
-    [Header("Trail")]
-    [SerializeField]
-    private GameObject tail;
-    [SerializeField]
-    private GameObject trailPrefab;
-    [SerializeField]
-    private float trailGenerateCD = 1;
-    private bool canGenerateTrail = true;
-    private float trailTimer = 0;
 
     [Header("Paint")]
     [SerializeField]
@@ -40,6 +31,8 @@ public class SkateboardController : MonoBehaviour
     [SerializeField]
     private GridGenerator gridGenerator;
     private Color currentColor;
+    [SerializeField]
+    private MeshRenderer skateboardMesh;
 
 
     
@@ -116,18 +109,9 @@ public class SkateboardController : MonoBehaviour
         // }
     }
 
-    private void GenerateTrails()
-    {
-        if(trailPrefab == null) { return; }
-        Vector3 trailPosition = tail.transform.position;
-        trailPosition.y = -0.001f;
-        GameObject trail = Instantiate(trailPrefab, trailPosition, Quaternion.identity);
-        trail.transform.SetParent(null);
-        canGenerateTrail = false;
-    }
-
     public void ChangeColor(Color colorToChange)
     {
         currentColor = colorToChange;
+        skateboardMesh.material.SetColor("_Color", colorToChange);
     }
 }

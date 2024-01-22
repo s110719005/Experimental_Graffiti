@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using TMPro;
+using UnityEngine.UI;
+
+
+
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,25 +20,53 @@ namespace GridSystem
     {
         private Grid grid;
         [SerializeField]
-        private GridDefinition gridDefinition;
+        private List<GridDefinition> gridDefinitions;
+        private GridDefinition currentGridDefinition;
+        public GridDefinition CurrentGridDefinition => currentGridDefinition;
         [SerializeField]
         private Color currentColor = Color.white;
+        [SerializeField]
+        private TextMeshProUGUI accuracyText;
+        [SerializeField]
+        private Image templateImage;
+        [SerializeField]
+        private Image endingTemplateImage;
+
+        private int correctCell = 0;
 
         public bool DEBUG_hasGenerate = false;
         public bool DEBUG_canMouseInput = false;
         
-        void Start()
+        void Awake()
         {
-            //grid = new Grid(20, 10, 10f, gameObject);
-            if(!DEBUG_canMouseInput)
-            {
-                grid = new Grid(gridDefinition, gameObject);
-            }
+            int random = UnityEngine.Random.Range(0, (gridDefinitions.Count - 1));
+            currentGridDefinition = gridDefinitions[random];
+            if(templateImage != null) { templateImage.sprite = currentGridDefinition.TemplateSprite; }
+            if(endingTemplateImage != null) { endingTemplateImage.sprite = currentGridDefinition.TemplateSprite; }
         }
 
         void Update()
         {
             CheckMouseInput();
+        }
+
+        public void GenerateGrid()
+        {
+            //grid = new Grid(gridDefinition, gameObject);
+            grid = new Grid(currentGridDefinition.GridWidth, currentGridDefinition.GridHeight, currentGridDefinition.CellSize, currentGridDefinition.GridSprite, gameObject);
+            int count = 0;
+            for(int x = 0; x < grid.GridArray.GetLength(0); x++)
+            {
+                for(int y = 0; y < grid.GridArray.GetLength(1); y++)
+                {
+                    count = x * (currentGridDefinition.GridHeight - 1) + y;
+                    if(grid.GridSprites[x, y].color == currentGridDefinition.GridColorDatas[count].color)
+                    {
+                        correctCell ++;
+                    }
+                }
+            }
+            UpdateAccuracyText();
         }
 
         private void CheckMouseInput()
@@ -55,36 +91,69 @@ namespace GridSystem
         }
 
         
-        public void UpdateGridColor(Vector3 position, Color colorToChange)
+        public bool UpdateGridColor(Vector3 position, Color colorToChange)
         {
-            grid.SetSpriteColor(position, colorToChange);
+            int x, y;
+            if(grid.SetSpriteColor(position, colorToChange, out x, out y))
+            {
+                UpdateAccuracy(x, y);
+                return true;
+            }
+            return false;
+        }
+        public void UpdateAccuracyText()
+        {
+            if(accuracyText == null) { return; }
+            float percentage = (float)correctCell / (float)(currentGridDefinition.GridWidth * currentGridDefinition.GridHeight);
+            percentage = percentage * 100;
+            Debug.Log("cell: " + correctCell + "width: " + currentGridDefinition.GridWidth + "height: " + currentGridDefinition.GridHeight + "%: " + percentage);
+            accuracyText.text = percentage.ToString("0.#\\%");// + "%";
+        }
+
+        private void UpdateAccuracy(int x, int y)
+        {
+            int count = x * (currentGridDefinition.GridHeight - 1) + y;
+            if(grid.GridSprites[x, y].color == currentGridDefinition.GridColorDatas[count].color)
+            {
+                correctCell++;
+            }
+            else
+            {
+                correctCell--;
+            }
+            UpdateAccuracyText();
         }
 
         public void DEBUG_GenerateGrid()
         {
             if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
-            grid = new Grid(gridDefinition, gameObject);
+            grid = new Grid(gridDefinitions[0].GridWidth, gridDefinitions[0].GridHeight, gridDefinitions[0].CellSize, gridDefinitions[0].GridSprite, gameObject);
             DEBUG_hasGenerate = true;
         }
 
         public void DEBUG_GenerateGridTemplate()
         {
             if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
-            grid = new Grid(gridDefinition, gameObject);
-            grid.SetColor(gridDefinition);
+            grid = new Grid(gridDefinitions[0], gameObject);
+            grid.SetColor(gridDefinitions[0]);
             DEBUG_hasGenerate = true;
         }
 
         public void DEBUG_RecordColor()
         {
-            gridDefinition.ResetColorData();
+            gridDefinitions[0].ResetColorData();
             if(grid != null)
             {
                 for(int x = 0; x < grid.GridArray.GetLength(0); x++)
                 {
                     for(int y = 0; y < grid.GridArray.GetLength(1); y++)
                     {
-                        gridDefinition.SetGridSpritesColor(x, y, grid.GridSprites[x, y].color);
+                        var recordColor = grid.GridSprites[x, y].color;
+                        if(!gridDefinitions[0].UsedColors.Contains(recordColor))
+                        {
+                            gridDefinitions[0].AddUsedColor(recordColor);
+                        }
+                        gridDefinitions[0].SetGridSpritesColor(x, y, grid.GridSprites[x, y].color);
                     }
                 }
             }
