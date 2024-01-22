@@ -40,7 +40,7 @@ namespace GridSystem
         
         void Awake()
         {
-            int random = UnityEngine.Random.Range(0, (gridDefinitions.Count - 1));
+            int random = UnityEngine.Random.Range(0, gridDefinitions.Count);
             currentGridDefinition = gridDefinitions[random];
             if(templateImage != null) { templateImage.sprite = currentGridDefinition.TemplateSprite; }
             if(endingTemplateImage != null) { endingTemplateImage.sprite = currentGridDefinition.TemplateSprite; }
