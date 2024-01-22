@@ -47,6 +47,8 @@ MonoBehaviour:
   gridDefinitions:
   - {fileID: 11400000, guid: 81cc79097bc25fe4eaa9c76165dd60c0, type: 2}
   - {fileID: 11400000, guid: 35164ee140e97e245820ef0ff031e105, type: 2}
+  - {fileID: 11400000, guid: d5e0a4d464708424baa60472eab60025, type: 2}
+  - {fileID: 11400000, guid: 207320b3a1bc6cd448fd5be4c6e50fcb, type: 2}
   currentColor: {r: 1, g: 1, b: 1, a: 1}
   accuracyText: {fileID: 0}
   templateImage: {fileID: 0}
