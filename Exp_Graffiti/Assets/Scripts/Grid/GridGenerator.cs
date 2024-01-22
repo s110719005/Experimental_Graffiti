@@ -14,6 +14,7 @@ using UnityEngine.UI;
 using UnityEditor;
 #endif
 
+
 namespace GridSystem
 {
     public class GridGenerator : MonoBehaviour
@@ -39,7 +40,7 @@ namespace GridSystem
         
         void Awake()
         {
-            int random = UnityEngine.Random.Range(0, (gridDefinitions.Count - 1));
+            int random = UnityEngine.Random.Range(0, gridDefinitions.Count);
             currentGridDefinition = gridDefinitions[random];
             if(templateImage != null) { templateImage.sprite = currentGridDefinition.TemplateSprite; }
             if(endingTemplateImage != null) { endingTemplateImage.sprite = currentGridDefinition.TemplateSprite; }
@@ -129,7 +130,7 @@ namespace GridSystem
             }
             UpdateAccuracyText();
         }
-
+#if UNITY_EDITOR
         public void DEBUG_GenerateGrid()
         {
             if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
@@ -191,6 +192,7 @@ namespace GridSystem
             var uniqueFileName = AssetDatabase.GenerateUniqueAssetPath("Assets/ScriptableObject/GridTemplate.asset");
             AssetDatabase.CreateAsset(newGrid, uniqueFileName);
         }
+#endif
     }
 
 }
