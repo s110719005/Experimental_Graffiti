@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class FinishPainting : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject endingCanvas;
+    
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.TryGetComponent<SkateboardController>(out SkateboardController skateboardController))
         {
-            GameCore.Instance.EndGame();
+            endingCanvas.SetActive(true);
+            //GameCore.Instance.EndGame();
         } 
     }
 }

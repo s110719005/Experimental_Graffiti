@@ -29,6 +29,8 @@ namespace GridSystem
         private TextMeshProUGUI accuracyText;
         [SerializeField]
         private Image templateImage;
+        [SerializeField]
+        private Image endingTemplateImage;
 
         private int correctCell = 0;
 
@@ -40,6 +42,7 @@ namespace GridSystem
             int random = UnityEngine.Random.Range(0, (gridDefinitions.Count - 1));
             currentGridDefinition = gridDefinitions[random];
             if(templateImage != null) { templateImage.sprite = currentGridDefinition.TemplateSprite; }
+            if(endingTemplateImage != null) { endingTemplateImage.sprite = currentGridDefinition.TemplateSprite; }
         }
 
         void Update()

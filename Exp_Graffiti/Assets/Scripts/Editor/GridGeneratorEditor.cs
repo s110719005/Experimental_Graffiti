@@ -61,6 +61,8 @@ public class GridGeneratorEditor : Editor
             EditorGUILayout.PropertyField(accuracyText);
             var templateImage = serializedObject.FindProperty("templateImage");
             EditorGUILayout.PropertyField(templateImage);
+            var endingTemplateImage = serializedObject.FindProperty("endingTemplateImage");
+            EditorGUILayout.PropertyField(endingTemplateImage);
             var DEBUG_hasGenerate = serializedObject.FindProperty("DEBUG_hasGenerate");
             EditorGUILayout.PropertyField(DEBUG_hasGenerate);
             var DEBUG_canMouseInput = serializedObject.FindProperty("DEBUG_canMouseInput");
