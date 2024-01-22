@@ -14,6 +14,7 @@ using UnityEngine.UI;
 using UnityEditor;
 #endif
 
+
 namespace GridSystem
 {
     public class GridGenerator : MonoBehaviour
@@ -129,7 +130,7 @@ namespace GridSystem
             }
             UpdateAccuracyText();
         }
-
+#if UNITY_EDITOR
         public void DEBUG_GenerateGrid()
         {
             if(DEBUG_hasGenerate) { DEBUG_ResetGrid(); }
@@ -191,6 +192,7 @@ namespace GridSystem
             var uniqueFileName = AssetDatabase.GenerateUniqueAssetPath("Assets/ScriptableObject/GridTemplate.asset");
             AssetDatabase.CreateAsset(newGrid, uniqueFileName);
         }
+#endif
     }
 
 }
