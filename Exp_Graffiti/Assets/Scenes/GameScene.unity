@@ -770,6 +770,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
+      propertyPath: accuracyText
+      value: 
+      objectReference: {fileID: 1770335441}
+    - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
+      propertyPath: templateImage
+      value: 
+      objectReference: {fileID: 2063903867}
+    - target: {fileID: 1996538745052203786, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
+      propertyPath: endingTemplateImage
+      value: 
+      objectReference: {fileID: 1098905239}
     - target: {fileID: 7139820671042628657, guid: ad51dd0e2b5a5db4c8e6064971fbf08b, type: 3}
       propertyPath: m_Name
       value: GridGenerator
